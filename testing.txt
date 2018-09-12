@@ -1,0 +1,14 @@
+<?php
+  $link = mysqli_connect("127.0.0.1", "root", "123456789", "testing");
+  $rfid = $_GET['rfid'];
+  if (mysqli_connect_errno()) {
+	echo ("Connect fail");
+	exit();}
+  $result = mysqli_query($link, "SELECT pin FROM door WHERE rfid = '$rfid'");
+  $row = mysqli_fetch_assoc($result);
+  if(is_null($row)){
+	echo "no";}
+  else{
+  print join(',', $row);}
+mysqli_close($link);
+?>
